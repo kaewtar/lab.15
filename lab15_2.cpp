@@ -51,9 +51,19 @@ void findLocalMax(const double A[][N], bool B[][N])
 	{
 		for(int j = 0 ; j < N ; j++)
 		{
-			if (i == 0 || j == 0 || i == N || j == N ) B[i][j] = 0;
-			else if(A[i+1][j+1] > A[i+1][j]     &&     A[i+1][j+1] > A[i][j+1]     &&      A[i+1][j+1] >  A[i+1][j+2]      &&      A[i+1][j+1] > A[i+2][j+1])	      B[i][j] = 1;
-			else B[i][j] = 0;			
+			if (i == 0 || j == 0 || i == N-1 || j == N-1 )
+			{
+				B[i][j] = 0;
+			}
+
+			else if(A[i][j] >= A[i][j-1] && A[i][j] >= A[i-1][j] && A[i][j] >= A[i][j+1] && A[i][j] >= A[i+1][j])
+			{
+				B[i][j] = 1;
+			}
+
+			else{
+				 B[i][j] = 0;
+			}			
 		}
 	}
 
